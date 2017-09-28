@@ -71,6 +71,7 @@ type AdUnit struct {
 	Bids       []Bids           `json:"bids"`
 	ConfigID   string           `json:"config_id"`
 	MediaTypes []string         `json:"media_types"`
+	Instl      int8             `json:"instl"`
 }
 
 type PBSAdUnit struct {
@@ -81,6 +82,7 @@ type PBSAdUnit struct {
 	Params     json.RawMessage
 	Video      PBSVideo
 	MediaTypes []MediaType
+	Instl      int8
 }
 
 func ParseMediaType(s string) (MediaType, error) {
@@ -309,6 +311,7 @@ func ParsePBSRequest(r *http.Request, cache cache.Cache) (*PBSRequest, error) {
 				Sizes:      unit.Sizes,
 				TopFrame:   unit.TopFrame,
 				Code:       unit.Code,
+				Instl:      unit.Instl,
 				Params:     b.Params,
 				BidID:      b.BidID,
 				MediaTypes: mtypes,
