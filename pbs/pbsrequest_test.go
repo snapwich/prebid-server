@@ -47,6 +47,9 @@ func TestParseSimpleRequest(t *testing.T) {
                 "code": "second",
                 "sizes": [{"w": 728, "h": 90}],
                 "media_types" :["banner", "video"],
+				"video" : {
+					"mimes" : ["video/mp4"]
+				},
                 "bids": [
                     {
                         "bidder": "indexExchange"
@@ -108,6 +111,9 @@ func TestParseSimpleRequest(t *testing.T) {
 	}
 	if pbs_req.AdUnits[1].MediaTypes[1] != "video" {
 		t.Errorf("Instead of video MediaType received %s", pbs_req.AdUnits[1].MediaTypes[0])
+	}
+	if pbs_req.AdUnits[1].Video.Mimes[0] != "video/mp4" {
+		t.Errorf("Instead of video/mp4 mimes received %s", pbs_req.AdUnits[1].Video.Mimes)
 	}
 
 }
